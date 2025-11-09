@@ -193,11 +193,9 @@ elif selected_page == "Obras":
     show_obras_page(db, contexto)
 
 elif selected_page == "Equipamentos":
-    from modules.equipamentos import show_equipamentos_page
     show_equipamentos_page(db, contexto)
 
 elif selected_page == "Movimentação":
-    
     show_movimentacao_page(db, contexto)
 
 elif selected_page == "Checklists":
