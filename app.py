@@ -4,6 +4,7 @@ from database import DatabaseManager
 import plotly.express as px
 import plotly.graph_objects as go
 from modules.movimentacao import show_movimentacao_page
+from modules.equipamentos import show_equipamentos_page
 from datetime import datetime, date
 
 # Configuração da página
