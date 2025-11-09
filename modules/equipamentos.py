@@ -91,10 +91,10 @@ def show_equipamentos_page(db, contexto=None):
                             st.write(f"**Obs:** {equip['observacoes']}")
                     
                     with col3:
-                       if st.button("✏️ Editar", key=f"edit_equip_{equip['id']}"):
+                        if st.button("✏️ Editar", key=f"edit_equip_{equip['id']}"):
                             st.session_state[f"edit_equip_{equip['id']}"] = True
                             
-                        if st.button("🗑️ Excluir", key=f"delete_equip_{equip['id']}"):
+                         if st.button("🗑️ Excluir", key=f"delete_equip_{equip['id']}"):
                             if st.confirm("Tem certeza que deseja excluir este equipamento?"):
                                 db.delete_equipamento(equip['id'])
                                 st.success("Equipamento excluído com sucesso!")
