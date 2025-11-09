@@ -3,6 +3,7 @@ import pandas as pd
 from database import DatabaseManager
 import plotly.express as px
 import plotly.graph_objects as go
+from modules.movimentacao import show_movimentacao_page
 from datetime import datetime, date
 
 # Configuração da página
@@ -196,7 +197,7 @@ elif selected_page == "Equipamentos":
     show_equipamentos_page(db, contexto)
 
 elif selected_page == "Movimentação":
-    from modules.movimentacao import show_movimentacao_page
+    
     show_movimentacao_page(db, contexto)
 
 elif selected_page == "Checklists":
