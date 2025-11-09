@@ -21,7 +21,7 @@ def show_equipamentos_page(db, contexto=None):
                 search = st.text_input("Buscar equipamento:", placeholder="Digite a descrição...")
             with col2:
                 status_filter = st.selectbox("Filtrar por status:", 
-                                           ["Todos", "disponivel", "enviado", "manutencao", "perdido"])
+                                             ["Todos", "disponivel", "enviado", "manutencao", "perdido"])
             with col3:
                 sort_by = st.selectbox("Ordenar por:", ["Descrição", "Quantidade", "Status"])
             
@@ -94,7 +94,7 @@ def show_equipamentos_page(db, contexto=None):
                         if st.button("✏️ Editar", key=f"edit_equip_{equip['id']}"):
                             st.session_state[f"edit_equip_{equip['id']}"] = True
                             
-                         if st.button("🗑️ Excluir", key=f"delete_equip_{equip['id']}"):
+                        if st.button("🗑️ Excluir", key=f"delete_equip_{equip['id']}"):
                             if st.confirm("Tem certeza que deseja excluir este equipamento?"):
                                 db.delete_equipamento(equip['id'])
                                 st.success("Equipamento excluído com sucesso!")
@@ -107,7 +107,7 @@ def show_equipamentos_page(db, contexto=None):
                         
                         with st.form(f"edit_equip_form_{equip['id']}"):
                             descricao_input = st.text_input("Descrição *", value=equip['descricao'],
-                                                           help="💡 Será convertido automaticamente para MAIÚSCULAS")
+                                                            help="💡 Será convertido automaticamente para MAIÚSCULAS")
                             # Converter automaticamente para maiúsculas
                             descricao = descricao_input.upper() if descricao_input else ""
                             
@@ -118,8 +118,8 @@ def show_equipamentos_page(db, contexto=None):
                             medida = st.text_input("Medida", value=equip['medida'] or "")
                             quantidade = st.number_input("Quantidade *", min_value=1, value=equip['quantidade'])
                             status = st.selectbox("Status", 
-                                                ["disponivel", "enviado", "manutencao", "perdido"],
-                                                index=["disponivel", "enviado", "manutencao", "perdido"].index(equip['status']))
+                                                  ["disponivel", "enviado", "manutencao", "perdido"],
+                                                  index=["disponivel", "enviado", "manutencao", "perdido"].index(equip['status']))
                             observacoes = st.text_area("Observações", value=equip['observacoes'] or "")
                             
                             col1, col2 = st.columns(2)
@@ -131,7 +131,7 @@ def show_equipamentos_page(db, contexto=None):
                                             st.error(f"❌ Já existe outro equipamento com a descrição '{descricao}'. Use uma descrição diferente!")
                                         else:
                                             db.update_equipamento(equip['id'], descricao, codigo, medida, 
-                                                                quantidade, status, observacoes)
+                                                                  quantidade, status, observacoes)
                                             st.success("✅ Equipamento atualizado com sucesso!")
                                             st.session_state[f"edit_equip_{equip['id']}"] = False
                                             st.rerun()
@@ -152,8 +152,8 @@ def show_equipamentos_page(db, contexto=None):
             st.markdown("#### Informações do Equipamento")
             
             descricao_input = st.text_input("Descrição do Equipamento *", 
-                                           placeholder="Ex: tubo de andaime 2m",
-                                           help="💡 Será convertido automaticamente para MAIÚSCULAS. Não pode ser duplicada.")
+                                            placeholder="Ex: tubo de andaime 2m",
+                                            help="💡 Será convertido automaticamente para MAIÚSCULAS. Não pode ser duplicada.")
             # Converter automaticamente para maiúsculas
             descricao = descricao_input.upper() if descricao_input else ""
             
@@ -168,10 +168,10 @@ def show_equipamentos_page(db, contexto=None):
             col1, col2 = st.columns(2)
             with col1:
                 codigo = st.text_input("Código (opcional)", 
-                                     placeholder="Ex: TAD-2M-001")
+                                       placeholder="Ex: TAD-2M-001")
             with col2:
                 medida = st.text_input("Medida (opcional)", 
-                                     placeholder="Ex: 2m x 48mm")
+                                       placeholder="Ex: 2m x 48mm")
             
             quantidade = st.number_input("Quantidade *", min_value=1, value=1, step=1)
             
@@ -180,7 +180,7 @@ def show_equipamentos_page(db, contexto=None):
             status = "disponivel"
             
             observacoes = st.text_area("Observações", 
-                                     placeholder="Informações adicionais sobre o equipamento...")
+                                       placeholder="Informações adicionais sobre o equipamento...")
             
             if st.form_submit_button("💾 Cadastrar Equipamento"):
                 if descricao and quantidade > 0:
@@ -189,8 +189,8 @@ def show_equipamentos_page(db, contexto=None):
                         st.error(f"❌ Já existe um equipamento com a descrição '{descricao}'. Use uma descrição diferente!")
                     else:
                         db.add_equipamento(descricao, codigo if codigo else None, 
-                                         medida if medida else None, quantidade, 
-                                         observacoes if observacoes else None)
+                                           medida if medida else None, quantidade, 
+                                           observacoes if observacoes else None)
                         st.success("✅ Equipamento cadastrado com sucesso!")
                         st.rerun()
                 else:
